@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""take two and add them"""
+"""Take two inputs and add them"""
 
 
 def add(a: float, b: float) -> float:
