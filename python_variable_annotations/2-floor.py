@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
+"""Returns the floor and makes it float"""
 import math
-
-    """Returns the floor and makes it float"""
 
 
 def floor(n: float) -> int:
