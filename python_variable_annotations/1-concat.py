@@ -4,11 +4,11 @@
 
 
 def concat(str1: str, str2: str) -> str:
-    """Concatenate two strings.
+    """Concatenates two strings.
 
     Args:
-        str1 (str): The first string.
-        str2 (str): The second string.
+        str1 (str): The first thing called a string.
+        str2 (str): The second thing called a string.
 
     Returns:
         str: The concatenated string of str1 and str2.
