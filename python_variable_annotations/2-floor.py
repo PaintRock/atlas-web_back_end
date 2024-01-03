@@ -2,7 +2,7 @@
 
 import math
 
-"""Returns the floor"""
+"""Returns the floor and makes it float"""
 
 
 def floor(n: float) -> int:
