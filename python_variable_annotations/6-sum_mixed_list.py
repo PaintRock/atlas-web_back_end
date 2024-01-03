@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-"""Functionsum_mixed_list that takes a mxd_lst of integers and floats and returns the sum as a 
-float"""
+"""Functionsum_mixed_list that takes a mxd_lst and returns the sum"""
 from typing import List, Union
 
 
