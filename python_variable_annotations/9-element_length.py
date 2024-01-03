@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 """Annotate a given funct and return the values with type"""
-from typing import List, Tuple
+from typing import Iterable, Sequence, List, Tuple
 
 
-def element_length(lst: List[str]) -> List[Tuple[str, int]]:
-    """ return the values and appropriate type"""
-    return[(i, len(i)) for i in lst]
+def element_length(lst: Iterable[Sequence]) -> List[Tuple[Sequence, int]]: 
+    """return the tuple and something else is what is req"""
+    return [(i, len(i)) for i in lst]
