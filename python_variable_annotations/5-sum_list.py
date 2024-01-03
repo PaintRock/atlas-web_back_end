@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-""" Function sum_list that takes 
-input_list and returns sum as float"""
+""" Function sum_list that takes input_list and returns sum as float"""
 from typing import List
 
 
