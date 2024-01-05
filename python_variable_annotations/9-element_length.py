@@ -5,5 +5,5 @@ from typing import Iterable, Sequence, List, Tuple
 
 
 def element_length(lst: Iterable[Sequence]) -> List[Tuple[Sequence, int]]: 
-    """Return the tuple with value type"""
+    """Return the tuple w/ type"""
     return [(i, len(i)) for i in lst]
