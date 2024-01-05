@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Boolean"""
+"""boolean"""
 
 
 a: int = 1
