@@ -4,13 +4,12 @@
 integer and returns asyncio.Task"""
 import time
 import asyncio
+from typing import Coroutine
 
 
 def task_wait_random(max_delay:int) -> asyncio.Task:
- """"Max delay is an int and 
- returns asyncio.Task"""
+ """"Max delay is an int and returns asyncio.Task"""
      async def wrapper():
         return await wait_random(max_delay)
 
     return asyncio.create_task(wrapper())
-    
