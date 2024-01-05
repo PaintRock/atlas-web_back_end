@@ -2,9 +2,7 @@
 
 """A function (normal) that takes an 
 integer and returns asyncio.Task"""
-import time
 import asyncio
-from typing import Coroutine
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
