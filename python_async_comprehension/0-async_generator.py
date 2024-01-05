@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-""" Asynchronous coroutine"""
 
+"""Asynchronous coroutine"""
 import random
 import asyncio
 
