@@ -6,4 +6,4 @@ import asyncio
 
 
 def task_wait_random(max_delay:int) -> asyncio.Task:
-    
+ """"Max delay is an int and returns asyncio.Task"""    
