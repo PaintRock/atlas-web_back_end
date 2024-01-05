@@ -7,6 +7,7 @@
 I do not even understan my computer
 'school' should be Atlas"""
 
+
 a: int = 1
     
 pi: float = 3.14
