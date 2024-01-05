@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-
 """Annotate a funct return the values with type"""
+
+
 from typing import Iterable, Sequence, List, Tuple
 
 
