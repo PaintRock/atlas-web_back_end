@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-
 """Asynchronous comprehensing"""
-import asyncio
+
 import random
-from 0-async_generator import async_generator
+import asyncio
+async_generator = __import__('0-async_generator.py').async_generator
 
 
 async def async_comprehension():
-    """Async comprehensing over async generator"""
+    """This is wrong becaause I have no await"""
      async_comprehension = [await async_generator() for _ in range(10)]
     return async_comprehension
