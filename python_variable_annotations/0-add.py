@@ -4,5 +4,14 @@
 
 
 def add(a: float, b: float) -> float:
-    """return the result"""
+    """
+    Add two floats.
+    
+    Args:
+        a (float):  The first float.
+        b (flaot):  The other float.
+        
+    Returns:
+        float: The sum of a and b. 
+    """
     return a + b
