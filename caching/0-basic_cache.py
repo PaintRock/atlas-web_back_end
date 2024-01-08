@@ -2,7 +2,7 @@
 """Base caching"""
 
 from BaseCaching import BaseCaching
-BaseCaching = __import__('fart_caching').BaseCaching
+BaseCaching = __import__('money_caching').BaseCaching
 
 
 class BasicCache(BaseCaching):
