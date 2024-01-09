@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Base caching"""
 
-from BaseCaching import BaseCaching
 from base_caching import BaseCaching
 
 
@@ -21,6 +20,7 @@ class LRUCache(BaseCaching):
         if key in self.cache_data:
             """Update the value for an existing key"""
             self.cache_data[key] = item
+            """Remove the existing key from the queue"""
             self.order.remove(key)
         else:
             if len(self.cache_data) >= self.MAX_ITEMS:
@@ -31,6 +31,7 @@ class LRUCache(BaseCaching):
 
         """ Add or update the item in the cache"""
         self.cache_data[key] = item
+        """Append the new key to the end of the queue"""
         self.order.append(key)
 
     def get(self, key):

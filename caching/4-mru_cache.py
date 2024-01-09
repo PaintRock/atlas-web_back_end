@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """MRU Caching"""
 
-from BaseCaching import BaseCaching
-BaseCaching = __import__('base_caching').BaseCaching
+from base_caching import BaseCaching
 
 
 class MRUCache(BaseCaching):
@@ -19,6 +18,9 @@ class MRUCache(BaseCaching):
 
         """Update the order if the key already exists"""
         if key in self.cache_data:
+            """Update the value for an existing key"""
+            self.cache_data[key] = item
+            """Remove the existing key from the queue"""
             self.order.remove(key)
         else:
             if len(self.cache_data) >= self.MAX_ITEMS:
