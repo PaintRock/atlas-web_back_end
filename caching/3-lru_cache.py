@@ -2,7 +2,7 @@
 """Base caching"""
 
 from BaseCaching import BaseCaching
-BaseCaching = __import__('base_caching').BaseCaching
+"""from base_caching import BaseCaching"""
 
 
 class LRUCache(BaseCaching):
@@ -19,13 +19,15 @@ class LRUCache(BaseCaching):
 
         """ Update the order if the key already exists"""
         if key in self.cache_data:
+            """Update the value for an existing key"""
+            self.cache_data[key] = item
             self.order.remove(key)
         else:
             if len(self.cache_data) >= self.MAX_ITEMS:
                 """ Discard the least recently used item (LRU)"""
                 lru_key = self.order.pop(0)
                 del self.cache_data[lru_key]
-                print(f"DISCARD: {lru_key}\n")
+                print(f"DISCARD: {lru_key}")
 
         """ Add or update the item in the cache"""
         self.cache_data[key] = item
