@@ -6,8 +6,12 @@ BaseCaching = __import__('base_caching').BaseCaching
 
 
 class FIFOCache(BaseCaching):
-    """calling parent init """
+    """Class created and the init
+    """
+    
     def __init__(self):
+        """Calling parent init
+        """
         super().__init__()
 
     def put(self, key, item):
