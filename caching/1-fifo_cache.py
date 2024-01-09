@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """FIFO Caching"""
 
-from base_caching import BaseCaching
+from BaseCaching import BaseCaching
 
 
 class FIFOCache(BaseCaching):
@@ -28,7 +28,7 @@ class FIFOCache(BaseCaching):
             if len(self.cache_data) >= self.MAX_ITEMS:
                 """Remove the oldest key from the queue"""
                 discarded_key = self.queue.pop(0)
-                print(f"DISCARD:{discarded_key}")
+                print(f"DISCARD: {discarded_key}")
                 """Discard the oldest key-value pair"""
                 del self.cache_data[discarded_key]
 
