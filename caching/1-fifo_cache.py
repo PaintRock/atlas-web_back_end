@@ -19,6 +19,7 @@ class FIFOCache(BaseCaching):
         if key is None or item is None:
             return
 
+        """Update the order if the key already exists"""
         if key in self.cache_data:
             """Update the value for an existing key"""
             self.cache_data[key] = item

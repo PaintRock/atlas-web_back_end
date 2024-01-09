@@ -6,10 +6,11 @@ from base_caching import BaseCaching
 
 class MRUCache(BaseCaching):
     """Create the class MRU"""
+    
     def __init__(self):
         """Call the parent"""
         super().__init__()
-        self.order = []
+        self.queue = []
 
     def put(self, key, item):
         """ put the item in the key"""
@@ -21,13 +22,13 @@ class MRUCache(BaseCaching):
             """Update the value for an existing key"""
             self.cache_data[key] = item
             """Remove the existing key from the queue"""
-            self.order.remove(key)
+            self.queue.remove(key)
         else:
             if len(self.cache_data) >= self.MAX_ITEMS:
                 """ Discard the most recently used item (MRU)"""
-                mru_key = self.order.pop()
+                mru_key = self.queue.pop()
                 del self.cache_data[mru_key]
-                print(f"DISCARD: {mru_key}\n")
+                print(f"DISCARD: {mru_key}")
 
         """Add or update the item in the cache"""
         self.cache_data[key] = item
@@ -39,7 +40,7 @@ class MRUCache(BaseCaching):
             return None
 
         """Update the order as the key was used (most recently)"""
-        self.order.remove(key)
-        self.order.append(key)
+        self.queue.remove(key)
+        self.queue.append(key)
 
         return self.cache_data[key]
