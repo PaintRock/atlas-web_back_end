@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """FIFO Caching"""
 
-from base_caching import BaseCaching
+from BaseCaching import BaseCaching
 
 
 class FIFOCache(BaseCaching):
@@ -15,18 +15,26 @@ class FIFOCache(BaseCaching):
         self.queue = []
 
     def put(self, key, item):
-        """ assign the key to item"""
+        """Add or update the item in the cache"""
         if key is None or item is None:
             return
 
-        if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            """FIFO: Remove the first item added to the cache"""
-            discarded_key = self.queue.pop(0)
-            del self.cache_data[discarded_key]
-            print(f"DISCARD: {discarded_key}\n")
+        if key in self.cache_data:
+            """Update the value for an existing key"""
+            self.cache_data[key] = item
+            """Remove the existing key from the queue"""
+            self.queue.remove(key)
+        else:
+            if len(self.cache_data) >= self.MAX_ITEMS:
+                """Remove the oldest key from the queue"""
+                discarded_key = self.queue.pop(0)
+                print(f"DISCARD:{discarded_key}")
+                """Discard the oldest key-value pair"""
+                del self.cache_data[discarded_key]
 
-        """ Add or update the item in the cache"""
+        """Add or update the item in the cache"""
         self.cache_data[key] = item
+        """Append the new key to the end of the queue"""
         self.queue.append(key)
 
     def get(self, key):
