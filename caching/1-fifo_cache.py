@@ -6,10 +6,12 @@ BaseCaching = __import__('base_caching').BaseCaching
 
 
 class FIFOCache(BaseCaching):
+    """calling parent init """
     def __init__(self):
         super().__init__()
 
     def put(self, key, item):
+        """ assign the key to item"""
         if key is None or item is None:
             return
 
@@ -23,6 +25,7 @@ class FIFOCache(BaseCaching):
         self.cache_data[key] = item
 
     def get(self, key):
+        """If key is none return none """
         if key is None or key not in self.cache_data:
             return None
         return self.cache_data[key]
