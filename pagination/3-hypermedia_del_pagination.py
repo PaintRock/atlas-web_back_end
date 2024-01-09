@@ -40,13 +40,11 @@ class Server:
         next_index = min(index + page_size, len(dataset))
         page_data = [dataset[i] for i in range(index, next_index)]
 
-        # Check for None values before comparison
         next_index_value = next_index if next_index < len(dataset) else None
 
         return {
             'index': index,
             'data': page_data,
             'page_size': page_size,
-            'next_index': next_index_value,  # Use the checked value for next_index
+            'next_index': next_index_value,
         }
-
