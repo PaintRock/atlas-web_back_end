@@ -2,13 +2,12 @@
 """FIFO Caching"""
 
 from BaseCaching import BaseCaching
-BaseCaching = __import__('base_caching').BaseCaching
 
 
 class FIFOCache(BaseCaching):
     """Class created and the init
     """
-    
+
     def __init__(self):
         """Calling parent init
         """
