@@ -32,7 +32,7 @@ class MRUCache(BaseCaching):
 
         """Add or update the item in the cache"""
         self.cache_data[key] = item
-        self.order.append(key)
+        self.queue.append(key)
 
     def get(self, key):
         """ key in the cache or none"""
