@@ -6,7 +6,7 @@ from base_caching import BaseCaching
 
 class MRUCache(BaseCaching):
     """Create the class MRU"""
-    
+
     def __init__(self):
         """Call the parent"""
         super().__init__()
