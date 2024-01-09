@@ -20,12 +20,12 @@ class FIFOCache(BaseCaching):
             return
 
         if len(self.cache_data) >= self.MAX_ITEMS:
-            # FIFO: Remove the first item added to the cache
+            """FIFO: Remove the first item added to the cache"""
             discarded_key, _ = next(iter(self.cache_data.items()))
             del self.cache_data[discarded_key]
             print(f"DISCARD: {discarded_key}\n")
 
-        # Add or update the item in the cache
+        """ Add or update the item in the cache"""
         self.cache_data[key] = item
 
     def get(self, key):
