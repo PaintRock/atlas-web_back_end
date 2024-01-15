@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import re
+from typing import List
 """A function that returns
 the log message obfuscated"""
 
