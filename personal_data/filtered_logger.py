@@ -5,11 +5,12 @@ from typing import List
 the log message obfuscated"""
 
 
-def filter_datum(fields, redaction, message, separator):
+def filter_datum(fields: typing.List[str], redaction: str, message: str,
+                 separator: str) -> str:
     """ Args
         fields: a list of strings representing all
         fields to obfuscate
-        
+
         redaction: a string representing by what
         the field will be obfuscated
 
@@ -22,13 +23,8 @@ def filter_datum(fields, redaction, message, separator):
         Returns: "xxx"ed out stuff in certain fields
         """
 
-    return re.sub(fr'(?<={separator}|^)({"|".join(fields)})=[^;]*', lambda match: f'{match.group(1)}={redaction}', message)
-
-    fields = ["password", "date_of_birth"]
-
-
-messages = ["name=egg;email=eggmin@eggsample.com;password=eggcellent;date_of_birth=12/12/1986;", "name=bob;email=bob@dylan.com;password=bobbycool;date_of_birth=03/04/1993;"]
-
-for message in messages:
-    print(filter_datum(fields, 'xxx', message, ';'))
-    
+    for i in fields:
+        message = re.sub(i + "=.*?" + separator,
+                         i + "=" + redaction + separator,
+                         message)
+    return message
