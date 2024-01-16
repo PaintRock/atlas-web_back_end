@@ -23,8 +23,7 @@ def filter_datum(fields: typing.List[str], redaction: str, message: str,
         Returns: "xxx"ed out stuff in certain fields
         """
 
-    for i in fields:
-        message = re.sub(i + "=.*?" + separator,
-                         i + "=" + redaction + separator,
-                         message)
+    for field in fields:
+        pattern = r'({})([^{}]+)'.format(field + '=', separator)
+        message = re.sub(pattern, r"\1{}".format(redaction), message)
     return message
