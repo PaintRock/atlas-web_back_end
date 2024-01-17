@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 """Write a function called filter_datum
-that returns the log message obfuscated"""
+that returns log messages obfuscated"""
 import re
 from typing import List
 import logging
 
 
-PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
+PII_FIELDS = ('name', 'email', 'ssn', 'password', 'ip',)
+"""Tuple of PII fields from user data.csv"""
 
 
 def filter_datum(fields: List[str], redaction: str, message: str,
                  separator: str) -> str:
-    ''' Description: Regex-ing - Write a function called filter_datum that
-                     returns the log message obfuscated:
+    """ A function called filter_datum that
+                     returns log messages obfuscated:
 
         Arguments:
             fields: a list of strings representing all fields to obfuscate
@@ -21,29 +22,20 @@ def filter_datum(fields: List[str], redaction: str, message: str,
             message: a string representing the log line
             separator: a string representing by which character is
                            separating all fields in the log line (message)
-        The function should use a regex to replace occurrences of certain
-        field values.
-        filter_datum should be less than 5 lines long and use re.sub to
-        perform the substitution with a single regex.
-    '''
+    """
 
-    for i in fields:
-        message = re.sub(i + "=.*?" + separator,
-                         i + "=" + redaction + separator,
+    for info in fields:
+        message = re.sub(info + "=.*?" + separator,
+                         info + "=" + redaction + separator,
                          message)
     return message
 
 
 class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class
-        Description: Update the class to accept a list of strings fields
-                     constructor argument.
+        Update the class provide in the instructions to accept
+        a list of strings fields.
 
-        Implement the format method to filter values in incoming log records
-        using filter_datum. Values for fields in fields should be filtered.
-
-        DO NOT extrapolate FORMAT manually. The format method should be less
-        than 5 lines long
     """
 
     REDACTION = "***"
@@ -56,7 +48,26 @@ class RedactingFormatter(logging.Formatter):
         self.fields = fields
 
     def format(self, record: logging.LogRecord) -> str:
-        """ Filters values in incoming log records using filter_datum """
+        """ This filters the values in incoming log records
+        using filter_datum """
         return filter_datum(self.fields, self.REDACTION,
                             super(RedactingFormatter, self).format(record),
                             self.SEPARATOR)
+
+    def get_logger() -> logging.logger:
+        """Implement a get_logger fx that takes no args (i.e. '()' the empty
+        parentheses), and returns a logging.logger object
+        (i.e. '->' = return the object 'logging.logger').
+
+        The logger should be named 'user_data' """
+    logger = logging.getLogger("user_data")
+    """...and log only upto logging.INFO level"""
+    logger.setLevel(logging.INFO)
+    """ ... it should not propagate messages to other loggers"""
+    logger.propagate = False
+    """ ... it should have a StreamHandler with RedactingFormatter (above)
+     as formatter """
+    streamhandler = logging.StreamHandler()
+    streamhandler.setFormatter(RedactingFormatter(PII_FIELDS))
+    logger.addHandler(streamhandler)
+    return (logger)
