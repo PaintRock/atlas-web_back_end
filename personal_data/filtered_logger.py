@@ -5,7 +5,7 @@ import re
 from typing import List
 import logging
 from logging import StreamHandler
-import mysql.connector
+import mysql
 import os
 
 PII_FIELDS = ('name', 'email', 'ssn', 'password', 'ip',)
