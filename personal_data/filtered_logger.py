@@ -67,10 +67,10 @@ class RedactingFormatter(logging.Formatter):
         logger.propagate = False
         """ ... it should have a StreamHandler with RedactingFormatter (above)
         as formatter """
+
         stream_handler = StreamHandler()
         formatter = RedactingFormatter(PII_FIELDS)
         stream_handler.setFormatter(formatter)
-        
 
         logger.addHandler(stream_handler)
 
