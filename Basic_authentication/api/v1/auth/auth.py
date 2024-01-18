@@ -13,9 +13,10 @@ class Auth:
         if path is None or excluded_paths is None or not excluded_paths:
             return True
 
-        # Ensure slash tolerance by handling paths with and without trailing slashes
+        """Ensure slash tolerance by handling paths with and
+        without trailing slashes"""
         normalized_path = path.rstrip('/') + '/'
-        
+
         return normalized_path not in excluded_paths
 
     def authorization_header(self, request=None) -> str:
