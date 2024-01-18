@@ -30,3 +30,8 @@ def stats() -> str:
 def unauthorized_endpoint():
     """ Endpoint that raises a 401 error """
     abort(401)
+
+@app_views.route('/api/v1/unauthorized', methods=['GET'])
+def unauthorized_endpoint_two():
+    """ Endpoint that raises a 401 error """
+    abort(403)
