@@ -9,6 +9,7 @@ class BasicAuth(Auth):
     """empty class inheriting"""
     pass
 def extract_base64_authorization_header(self, authorization_header: str) -> str:
+    """Not real sure"""
     not isinstance authorization_header is None or
     if (authorization_header, str):
         return None
