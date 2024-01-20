@@ -29,11 +29,6 @@ elif AUTH_TYPE == "session_auth":
     auth = SessionAuth()
 
 
-class SessionAuth(Auth):
-    """SessionAuth class"""
-    pass
-
-
 @app.errorhandler(401)
 def unauthorized_error(error) -> str:
     """ Unauthorized handler
