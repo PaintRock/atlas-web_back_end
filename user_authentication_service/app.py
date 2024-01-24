@@ -40,8 +40,10 @@ def login():
     incorrect"""
     form_data = request.form
 
-    if not email or not password:
-        return jsonify(("message: missing credetials")), 400
+   if "email" not in form_data:
+        return jsonify({"message": "email required"}), 400
+    elif "password" not in form_data:
+        return jsonify({"message": "password required"}), 400
     else:
 
         email = request.form.get("email")
