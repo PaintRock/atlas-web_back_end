@@ -50,6 +50,16 @@ class Auth:
         except NoResultFound:
             return False
 
+    def create_session(self, email: str) -> str:
+        """Finthe user corresponding to the email"""
+        user = self._db.find_user_by(email=email)
+        session_id = self.generate_uuid()
+        self._db.update_user_session(user.id, session_id)
+
+        return session_id
+        except NoResultFound
+        raise ValueError(f"User with email {email} not found")
+
     def __init__(self):
         """Init code"""
         self._db = DB()
