@@ -30,5 +30,35 @@ def register_users():
         return jsonify({"message": str(e)}), 400
 
 
+@app.route('/sessions', methods=['POST'])
+def login():
+    """Implement a login function to respond
+    to the POST / sessions route
+    Should contain form dat with email and pswrd
+    fields
+    Use flash.abourt to resond with 401 if
+    incorrect"""
+    form_data = request.form
+
+    if not email or not password:
+        return jsonify(("message: missing credetials")), 400
+    else:
+
+        email = request.form.get("email")
+        pswd = request.form.get("password")
+
+        if AUTH.valid_login(email, pswd) is False:
+            abort(401)
+        else:
+            session_id = AUTH.create_session(email)
+            response = jsonify({
+                "email": email,
+                "message": "logged in"
+            })
+            response.set_cookie('session_id', session_id)
+
+            return response
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
