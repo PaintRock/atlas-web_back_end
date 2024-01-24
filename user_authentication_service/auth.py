@@ -43,11 +43,11 @@ class Auth:
         except NoResultFound:
             return False
 
-    def _generate_uuid(self) -> str:
-        """Generate a new UUID
-        return New uuid"""
-        new_uuid = uuid.uuid4()
-        return str(new_uuid)
+def _generate_uuid(self) -> str:
+    """Generate a new UUID
+    return New uuid"""
+    new_uuid = uuid.uuid4()
+    return str(new_uuid)
 
     def __init__(self):
         """Init code"""
