@@ -53,7 +53,7 @@ class Auth:
     def create_session(self, email: str) -> str:
         """Finthe user corresponding to the email"""
         user = self._db.find_user_by(email=email)
-        session_id = self.generate_uuid()
+        session_id = generate_uuid()
         self._db.update_user_session(user.id, session_id)
 
         return session_id
