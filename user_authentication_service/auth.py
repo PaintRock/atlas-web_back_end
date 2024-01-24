@@ -21,8 +21,10 @@ class Auth:
         except NoResultFound:
             # If no user found, proceed with registration
             hashed_password = self._hash_password(password)
-            new_user = self._db.add_user
-            (email=email, hashed_password=hashed_password)
+            new_user = self._db.add_user(
+                email=email,
+                hashed_password=hashed_password
+            )
             return new_user
 
     def __init__(self):
