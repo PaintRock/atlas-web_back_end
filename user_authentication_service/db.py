@@ -61,7 +61,7 @@ class DB:
         user = self.find_user_by(id=user_id)
         column_names = User.__table__.columns.keys()
         for key in kwargs.keys():
-            if key not in column_name:
+            if key not in column_names:
                 raise ValueError
 
         for key, value in kwargs.item():
