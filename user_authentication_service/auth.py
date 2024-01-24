@@ -27,6 +27,9 @@ class Auth:
                 hashed_password=hashed_password
             )
             return new_user
+        
+        else:
+            raise ValueError(f'User {email} already exists')
 
     def __init__(self):
         self._db = DB()
