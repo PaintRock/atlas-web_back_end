@@ -47,7 +47,7 @@ class Auth:
         """Generate a new UUID
         return New uuid"""
         new_uuid = uuid.uuid4()
-    return str(new_uuid)
+        return str(new_uuid)
 
     def __init__(self):
         """Init code"""
