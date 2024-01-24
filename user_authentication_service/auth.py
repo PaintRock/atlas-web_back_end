@@ -48,4 +48,5 @@ class Auth:
         return str(uuid.uuid4())
 
     def __init__(self):
+        """Init code"""
         self._db = DB()
