@@ -45,10 +45,9 @@ class Auth:
 
     def _generate_uuid() -> str:
         """Generate a new UUID"""
-        return str(uuid.uuid4())
-    
-    def 
+        new_uuid = uuid.uuid4()
+    return str(new_uuid)
 
-    def __init__(self) -> None:
+    def __init__(self):
         """Init code"""
         self._db = DB()
