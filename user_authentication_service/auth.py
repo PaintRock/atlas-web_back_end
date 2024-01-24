@@ -12,6 +12,7 @@ def _hash_password(password: str) -> bytes:
     """Takes a pasword and returns bytes"""
     return hashpw(password.encode('utf-8'), gensalt())
 
+
 def _generate_uuid() -> str:
     """Generate a new UUID
     return New uuid"""
@@ -48,11 +49,6 @@ class Auth:
                 )
         except NoResultFound:
             return False
-    
-    
-
-
-
 
     def __init__(self):
         """Init code"""
