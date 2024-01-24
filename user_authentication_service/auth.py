@@ -51,14 +51,15 @@ class Auth:
             return False
 
     def create_session(self, email: str) -> str:
-        """Find the user corresponding to the email"""
+        """Find a user by email and create/store
+        UUID
+        """
         user = self._db.find_user_by(email=email)
-
-        if user is not None:
-            session_id = generate_uuid()
-            self._db.update_user_session(user.id, session_id=session_id)
-        else:
-            return None
+        if user:
+            session_id = str(uuid.uuid4())
+            self._db.update_user(user.id, session_id=session_id)
+            return session_id
+        return None
 
     def __init__(self):
         """Init code"""
