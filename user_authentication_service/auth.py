@@ -57,8 +57,7 @@ class Auth:
         self._db.update_user_session(user.id, session_id)
 
         return session_id
-        except NoResultFound
-        raise ValueError(f"User with email {email} not found")
+        
 
     def __init__(self):
         """Init code"""
