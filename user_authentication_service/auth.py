@@ -68,8 +68,7 @@ class Auth:
             return user
         except NoResultFound:
             return None
-        
-        
+
     def __init__(self):
         """Init code"""
         self._db = DB()
