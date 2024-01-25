@@ -30,13 +30,13 @@ def register_users():
         return jsonify({"message": str(e)}), 400
 
 
-@app.route('/sessions', methods=['POST'], strict_slashes=False)
+@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
 def login() -> str:
     """Implement a login function to respond
     to the POST / sessions route
     Should contain form dat with email and pswrd
     fields
-    Use flash.abourt to resond with 401 if
+    Use flash.abourt to resond with 403 if
     incorrect"""
     form_data = request.form
 
