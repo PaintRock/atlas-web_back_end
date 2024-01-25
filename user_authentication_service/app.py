@@ -30,8 +30,8 @@ def register_users():
         return jsonify({"message": str(e)}), 400
 
 
-@app.route('/sessions', methods=['POST'])
-def login():
+@app.route('/sessions', methods=['POST'], strict_slashes=False)
+def login() -> str:
     """Implement a login function to respond
     to the POST / sessions route
     Should contain form dat with email and pswrd
@@ -68,28 +68,12 @@ def log_out() -> None:
     If the user exists destroy the session and redirect the user to GET /.
     If the user does not exist, respond with a 403 HTTP status.
     """
-    form_data = request.form
-
-    if "email" not in form_data:
-        return jsonify({"message": "email required"}), 400
-    elif "password" not in form_data:
-        return jsonify({"message": "password required"}), 400
-    else:
-
-        email = request.form.get("email")
-        pswd = request.form.get("password")
-
-        if AUTH.valid_login(email, pswd) is False:
-            abort(401)
-        else:
-            session_id = AUTH.create_session(email)
-            response = jsonify({
-                "email": email,
-                "message": "logged in"
-                })
-            response.set_cookie('session_id', session_id)
-
-            return response
+    session_id = request.cookies.get('session_id')
+    user = AUTH.get_user_from_session_id(session_id)
+    if not user:
+        abort(403)
+    AUTH.destroy_session(user.id)
+    return redirect('/')
 
 
 @app.route('/profile', methods=['GET'], strict_slashes=False)
