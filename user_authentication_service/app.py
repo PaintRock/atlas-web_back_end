@@ -68,23 +68,27 @@ def log_out() -> None:
     If the user exists destroy the session and redirect the user to GET /.
     If the user does not exist, respond with a 403 HTTP status.
     """
-    session_id = request.cookies.get('session_id')
-    user = AUTH.get_user_from_session_id(session_id)
-    if not user:
+    if session_id is None:
+        abort(403)
+    if user is None:
         abort(403)
     AUTH.destroy_session(user.id)
-    return redirect('/')
+    response = redirect('/')
+    # response.set_cookie('session_id', '', expires=0)
+    return response
 
 
 @app.route('/profile', methods=['GET'], strict_slashes=False)
-def profile() -> str:
-    """response to the GET /profile"""
+def profile():
+    """user profilee endpoint
+    """
     session_id = request.cookies.get('session_id')
     user = AUTH.get_user_from_session_id(session_id)
-    if user:
-        return jsonify({"email": user.email}), 200
-    else:
+    if session_id is None:
         abort(403)
+    if user is None:
+        abort(403)
+    return jsonify({"email": user.email}), 200
 
 
 @app.route('/reset_password', methods=['POST'], strict_slashes=False)
