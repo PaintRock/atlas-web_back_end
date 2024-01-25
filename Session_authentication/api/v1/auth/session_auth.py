@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
-""" Module of Session Authentication
+""" Module of Session in Database
 """
-from api.v1.auth.auth import Auth
-from uuid import uuid4
-from models.user import User
+from api.v1.auth.session_exp_auth import SessionExpAuth
+from datetime import datetime, timedelta
+from models.user_session import UserSession
 
 
-class SessionAuth(Auth):
-    """create a CLASS ATTRIBUTE initialize by
-    an empty dictionary"""
-    user_id_by_session_id = {}
+class SessionDBAuth(SessionExpAuth):
+    """Session in database Class"""
 
     def create_session(self, user_id=None):
         """Creation session database"""
@@ -25,16 +23,28 @@ class SessionAuth(Auth):
 
         return session_id
 
-    def user_id_for_session_id(self, session_id: str = None) -> str:
-        """Returns User ID based on a Session's ID
-        Args:
-            session_id (str, optional): The session ID. Defaults to None.
-        Returns:
-            str: The User ID.
-        """
-        if session_id is None or not isinstance(session_id, str):
+    def user_id_for_session_id(self, session_id=None):
+        """User ID for Session ID Database"""
+        if session_id is None:
             return None
-        return self.user_id_by_session_id.get(session_id)
+
+        UserSession.load_from_file()
+        user_session = UserSession.search({
+            'session_id': session_id
+        })
+
+        if not user_session:
+            return None
+
+        user_session = user_session[0]
+
+        expired_time = user_session.created_at + \
+            timedelta(seconds=self.session_duration)
+
+        if expired_time < datetime.utcnow():
+            return None
+
+        return user_session.user_id
 
     def destroy_session(self, request=None):
         """Remove Session from Database"""
