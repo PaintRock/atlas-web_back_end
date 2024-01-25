@@ -37,4 +37,3 @@ class Auth:
         if _my_session_id is None or _my_session_id == '':
             return None
         return _my_session_id
- 
