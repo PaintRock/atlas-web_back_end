@@ -41,9 +41,9 @@ def login() -> str:
     form_data = request.form
 
     if "email" not in form_data:
-        return jsonify({"message": "email required"}), 403
+        return jsonify({"message": "email required"}), 400
     elif "password" not in form_data:
-        return jsonify({"message": "password required"}), 403
+        return jsonify({"message": "password required"}), 400
     else:
 
         email = request.form.get("email")
