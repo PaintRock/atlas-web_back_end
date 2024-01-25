@@ -68,14 +68,28 @@ def log_out() -> None:
     If the user exists destroy the session and redirect the user to GET /.
     If the user does not exist, respond with a 403 HTTP status.
     """
-    if session_id is None:
-        abort(403)
-    if user is None:
-        abort(403)
-    AUTH.destroy_session(user.id)
-    response = redirect('/')
-    # response.set_cookie('session_id', '', expires=0)
-    return response
+    form_data = request.form
+
+    if "email" not in form_data:
+        return jsonify({"message": "email required"}), 400
+    elif "password" not in form_data:
+        return jsonify({"message": "password required"}), 400
+    else:
+
+        email = request.form.get("email")
+        pswd = request.form.get("password")
+
+        if AUTH.valid_login(email, pswd) is False:
+            abort(401)
+        else:
+            session_id = AUTH.create_session(email)
+            response = jsonify({
+                "email": email,
+                "message": "logged in"
+                })
+            response.set_cookie('session_id', session_id)
+
+            return response
 
 
 @app.route('/profile', methods=['GET'], strict_slashes=False)
