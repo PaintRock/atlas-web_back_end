@@ -30,10 +30,10 @@ class Auth:
         return None
 
     def session_cookie(self, request=None):
-        """num num num num Cookie Monster"""
+        """
+        Returns a cookie value from a request.
+        """
         if request is None:
             return None
-        _my_session_id = request.cookies.get(os.getenv('SESSION_NAME'))
-        if _my_session_id is None or _my_session_id == '':
-            return None
-        return _my_session_id
+        session_name = os.getenv('SESSION_NAME')
+        return request.cookies.get(session_name)
