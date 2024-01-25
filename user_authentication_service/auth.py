@@ -71,16 +71,47 @@ class Auth:
         except NoResultFound:
             return None
 
-    def destroy_session(self, user_id: int) -> None:
-        """Identifies the user in the db
-        updates the session Id and save back
-        to db"""
-        user = self._db.get_user_by_id(user_id)
-        
-        if user:
-            user['session_id'] = None
-            self._db.update_user(user)
-            
+    def destroy_session(self, user_id: str) -> None:
+        """ Updates user's session_id to None"""
+        if user_id is None:
+            return None
+        try:
+            found_user = self._db.find_user_by(id=user_id)
+            self._db.update_user(found_user.id, session_id=None)
+        except NoResultFound:
+            return None
+
+    def get_reset_password_token(self, email: str) -> str:
+        """ If it exists, generate a UUID and
+            update the user’s reset_token database field
+            Return: the token
+        """
+        try:
+            user = self._db.find_user_by(email=email)
+        except NoResultFound:
+            raise ValueError
+
+        reset_token = _generate_uuid()
+
+        self._db.update_user(user.id, reset_token=reset_token)
+
+        return reset_token
+
+    def update_password(self, reset_token: str, password: str) -> None:
+        """Uses reset token to validate update of users password"""
+        if reset_token is None or password is None:
+            return None
+
+        try:
+            user = self._db.find_user_by(reset_token=reset_token)
+        except NoResultFound:
+            raise ValueError
+
+        hashed_password = _hash_password(password)
+        self._db.update_user(user.id,
+                             hashed_password=hashed_password,
+                             reset_token=None)
+
     def __init__(self):
         """Init code"""
         self._db = DB()
