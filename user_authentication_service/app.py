@@ -50,7 +50,7 @@ def login() -> str:
         pswd = request.form.get("password")
 
         if AUTH.valid_login(email, pswd) is False:
-            abort(401)
+            abort(403)
         else:
             session_id = AUTH.create_session(email)
             response = jsonify({
