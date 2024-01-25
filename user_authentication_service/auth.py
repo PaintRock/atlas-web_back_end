@@ -64,17 +64,23 @@ class Auth:
     def get_user_from_session_id(self, session_id: str) -> User:
         """
         Gets the user info based on session ID
-        Args: session_id
-        Returns: user if exists
-        or None
         """
         try:
             user = self._db.find_user_by(session_id=session_id)
             return user
         except NoResultFound:
             return None
-        
 
+    def destroy_session(self, user_id: int) -> None:
+        """Identifies the user in the db
+        updates the session Id and save back
+        to db"""
+        user = self._db.get_user_by_id(user_id)
+        
+        if user:
+            user['session_id'] = None
+            self._db.update_user(user)
+            
     def __init__(self):
         """Init code"""
         self._db = DB()
