@@ -26,35 +26,37 @@ app.config.from_object(Config)
 
 
 @babel.localeselector
-def get_locale():
-    """get locale function"""
-    url_locale = request.args.get('locale')
-    if url_locale and url_locale in app.config['LANGUAGES']:
-        return url_locale
-
-    if g.user and 'locale' in g.user and g.user
-    ['locale'] in app.config['LANGUAGES']:
-
-        return g.user['locale']
-
-    header_locale = request.accept_languages.best_match(
-        app.config['LANGUAGES'])
-    if header_locale:
-        return header_locale
-
-    return app.config['BABEL_DEFAULT_LOCALE']
+def get_locale() -> str:
+    """ Determines best match for supported languages """
+    # check if there is a locale parameter/query string
+    if request.args.get('locale'):
+        locale = request.args.get('locale')
+        if locale in app.config['LANGUAGES']:
+            return locale
+    # check if there is a locale in an existing user's profile
+    elif g.user and g.user.get('locale')\
+            and g.user.get('locale') in app.config['LANGUAGES']:
+        return g.user.get('locale')
+    # default to return as a failsafe
+    else:
+        return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-def get_user(user_id):
-    """returns users from dict or none"""
-    if users and 'locale' in users and users
-    return users.get(user_id)
+def get_user() -> Union[dict, None]:
+    """ Returns user dict if ID can be found """
+    if request.args.get('login_as'):
+        # have to type cast  the param to be able to search the user dict
+        user = int(request.args.get('login_as'))
+        if user in users:
+            return users.get(user)
+    else:
+        return None
 
 
 @app.before_request
 def before_request():
-    user_id = request.args.get('login_as', type=int)
-    g.user = users.get(user_id)
+    """ Finds user and sets as global on flask.g.user """
+    g.user = get_user()
 
 
 @app.route('/')
