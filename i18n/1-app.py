@@ -11,7 +11,7 @@ class Config():
     """Config class""" 
     LANGUAGES = "en", "fr"
     BABLE_DEFAULT_LOCALE = 'en'
-    BABEL_DEFAULT_TIMEZON = 'UTC'
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
 app.config.from_object(Config)
