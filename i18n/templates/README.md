@@ -1,0 +1,1 @@
+This is the Readme.md for the easier of our two assignments of this sprint
