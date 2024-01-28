@@ -28,29 +28,41 @@ app.config.from_object(Config)
 @babel.localeselector
 def get_locale():
     """get locale function"""
-    locale = request.args.get('locale')
-    if locale in app.config['LANGUAGES']:
-        return locale
+    url_locale = request.args.get('locale')
+    if url_locale and url_locale in app.config['LANGUAGES']:
+        return url_locale
 
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    if g.user and 'locale' in g.user and g.user
+    ['locale'] in app.config['LANGUAGES']:
+
+        return g.user['locale']
+
+    header_locale = request.accept_languages.best_match(
+        app.config['LANGUAGES']
+        )
+    if header_locale:
+        return header_locale
+
+    return app.config['BABEL_DEFAULT_LOCALE']
 
 
 def get_user(user_id):
     """returns users from dict or none"""
+    if users and 'locale' in users and users
     return users.get(user_id)
 
 
 @app.before_request
 def before_request():
-    """get user id from the login as"""
     user_id = request.args.get('login_as', type=int)
-    g.user = get_user(user_id)
+    g.user = users.get(user_id)
 
 
 @app.route('/')
 def root():
     """basic Flask"""
     return render_template('5-index.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
