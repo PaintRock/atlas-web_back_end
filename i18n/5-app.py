@@ -36,6 +36,7 @@ def get_locale():
 
 
 def get_user(user_id):
+    """returns users from dict or none"""
     return users.get(user_id)
 
 
