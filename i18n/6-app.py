@@ -38,8 +38,7 @@ def get_locale():
         return g.user['locale']
 
     header_locale = request.accept_languages.best_match(
-        app.config['LANGUAGES']
-        )
+        app.config['LANGUAGES'])
     if header_locale:
         return header_locale
 
@@ -61,7 +60,7 @@ def before_request():
 @app.route('/')
 def root():
     """basic Flask"""
-    return render_template('5-index.html')
+    return render_template('6-index.html')
 
 
 if __name__ == "__main__":
