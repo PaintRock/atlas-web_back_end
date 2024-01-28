@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Babel object in da house"""
-from flask import Flask, render_template
-from flask_babel import Babel
-from flask import g, request
+""" Route module for the API - Use user locale"""
 
-app = Flask(__name__)
-babel = Babel(app)
+
+from flask import Flask, request, render_template, g
+from flask_babel import Babel
+from os import getenv
+from typing import Union
+
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
     2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
@@ -13,16 +14,28 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
+app = Flask(__name__)
+babel = Babel(app)
 
-class Config():
-    """Config class"""
-    LANGUAGES = "en", "fr"
+
+class Config(object):
+    """ Setup - Babel configuration """
+    LANGUAGES = ['en', 'fr']
+    # these are the inherent defaults just btw
     BABEL_DEFAULT_LOCALE = 'en'
-    BABEL_DEFAULT_TIMEZONE = "UTC"
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
-app.config.from_object(Config)
-"""not sure why this makes this work"""
+# set the above class object as the configuration for the app
+app.config.from_object('6-app.Config')
+
+
+@app.route('/', methods=['GET'], strict_slashes=False)
+def index() -> str:
+    """ GET /
+    Return: 6-index.html
+    """
+    return render_template('6-index.html')
 
 
 @babel.localeselector
@@ -59,11 +72,7 @@ def before_request():
     g.user = get_user()
 
 
-@app.route('/')
-def root():
-    """basic Flask"""
-    return render_template('6-index.html')
-
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    host = getenv("API_HOST", "0.0.0.0")
+    port = getenv("API_PORT", "5000")
+    app.run(host=host, port=port)
