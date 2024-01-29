@@ -38,6 +38,8 @@ class TestGetJson(TestCase):
     ])
     def test_get_json(self, test_url, test_payload):
         """Test to retrun json"""
+        mock_response = Mock()
+        mock_response.json.return_value = test_payload
         with patch('request.get", return_value=mock_response'):
             real_response = get_json(test_url)
             self.assertEqual(real_response, test_payload)
