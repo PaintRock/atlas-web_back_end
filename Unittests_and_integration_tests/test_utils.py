@@ -49,16 +49,16 @@ class TestGetJson(TestCase):
             # check that mocked method called once per input
             mock_response.json.assert_called_once()
 
-     
+
 class TestMemoize(TestCase):
     """Class for Memoize testing"""
-    
+
     def test_memoize(self):
         """ memoize test func"""
-        
+
         class TestClass:
             """from project page"""
-            
+
             def a_method(self):
                 return 42
 
