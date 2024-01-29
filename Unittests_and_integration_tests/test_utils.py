@@ -49,6 +49,29 @@ class TestGetJson(TestCase):
             # check that mocked method called once per input
             mock_response.json.assert_called_once()
 
+     
+class TestMemoize(TestCase):
+    """Class for Memoize testing"""
+    @utils.memoize
+    def test_memoize():
+
+        class TestClass:
+
+            def a_method(self):
+                return 42
+
+            @memoize
+            def a_property(self):
+                return self.a_method()
+
+        with patch.obj(TestClass, 'a_method', return_value=42) as patched:
+            test_class = TestClass()
+            real_return = test_class.a_property
+            real_return = test_class.a_property
+
+            self.assertEqual(real_return, 42)
+            patched.asser_called_once()
+
 
 if __name__ == "__main__":
     unittest.main()
