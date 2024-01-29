@@ -51,24 +51,24 @@ class TestGetJson(TestCase):
 
 
 class TestMemoize(TestCase):
-    """ Class for testing memoization """
+    """Class for Memoize testing"""
 
     def test_memoize(self):
-        """ Tests memoize function """
+        """ memoize test func"""
 
         class TestClass:
-            """ Test class """
+            """from project page"""
 
             def a_method(self):
-                """ Method to always return 42 """
+                """more doc ddidlei idcoc"""
                 return 42
 
             @memoize
             def a_property(self):
-                """ Returns memoized property """
+                """more doccccc docccc doccc dooo"""
                 return self.a_method()
 
-        with patch.object(TestClass, 'a_method', return_value=42) as patched:
+        with patch.obj(TestClass, 'a_method', return_value=42) as patched:
             test_class = TestClass()
             real_return = test_class.a_property
             real_return = test_class.a_property
