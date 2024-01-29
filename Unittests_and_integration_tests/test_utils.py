@@ -72,7 +72,7 @@ class TestMemoize(TestCase):
             real_return = test_class.a_property
 
             self.assertEqual(real_return, 42)
-            patched.asser_called_once()
+            patched.assert_called_once()
 
 
 if __name__ == "__main__":
