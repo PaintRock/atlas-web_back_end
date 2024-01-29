@@ -52,11 +52,13 @@ class TestGetJson(TestCase):
      
 class TestMemoize(TestCase):
     """Class for Memoize testing"""
-    @utils.memoize
-    def test_memoize():
+    
+    def test_memoize(self):
         """ memoize test func"""
+        
         class TestClass:
             """from project page"""
+            
             def a_method(self):
                 return 42
 
