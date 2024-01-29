@@ -13,20 +13,21 @@ class TestAccessNestedMap(TestCase):
         ({"a": {"b": 2}}, ("a",), {'b': 2}),
         ({"a": {"b": 2}}, ("a", "b"), 2)
     ])
-    def test_access_nested_map(self, map, path, expected_output):
+    def test_access_nested_map(self, map, path, expected_result):
         """ Test method outputs """
         real_output = access_nested_map(map, path)
-        self.assertEqual(real_output, expected_output)
+        self.assertEqual(real_output, expected_result)
+
 
     @parameterized.expand([
         ({}, ("a",), 'a'),
-        ({"a": 1}, ("a", "b"), 'b')
+        ({"a": 1}, ("a", "b") 'b')
     ])
-    def test_access_nested_map_exception(self, map, path, wrong_output):
-        """ Test method raises correct exception """
+    def test_access_nested_map_exception(self, map, path, unexpected_result):
+        """Test method raises KeyError"""
         with self.assertRaises(KeyError) as e:
             access_nested_map(map, path)
-            self.assertEqual(wrong_output, e.exception)
+            self.assertEqual(unexpected_result, e.exception)
 
 
 if __name__ == "__main__":
