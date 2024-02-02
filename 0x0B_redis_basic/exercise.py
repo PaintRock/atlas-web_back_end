@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """This is a Redis module """
 import redis
-from uuid import uuid4, UUID, uuid
+import uuid
+from uuid import uuid4, UUID
 from typing import Union
 
 
