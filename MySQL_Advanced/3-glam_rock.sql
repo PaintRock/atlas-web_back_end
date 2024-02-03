@@ -1,4 +1,6 @@
 -- Glam rock as main style by longevity
-SELECT style = Glam rock
+SELECT band_name 
 FROM metal_bands
-ORDER BY (split - formed) AS lifespan DESC;
+WHERE style = Glam rock
+ORDER BY (split - formed) AS lifespan DESC
+;
