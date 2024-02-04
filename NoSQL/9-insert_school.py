@@ -5,6 +5,5 @@ from unittest import result
 
 def insert_school(mongo_collection, **kwargs):
     """the pymongo collection object"""
-    documents = mongo_collection.insert_one(kwargs)
-    id = result.inserted_id
+    id = mongo_collection.insert(kwargs)
     return id
