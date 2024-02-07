@@ -3,4 +3,4 @@
 
 def list_all(mongo_collection):
     """the pymongo collection object"""
-    return = mongo_collection.find({"topics": topic})
+    return mongo_collection.find({"topics": topic})
