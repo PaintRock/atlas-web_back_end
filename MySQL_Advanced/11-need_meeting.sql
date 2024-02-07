@@ -2,5 +2,5 @@
 DELIMITER //
 CREATE VIEW need_meeting AS
 SELECT name FROM students
-WHERE score < 80 ANd last_meeting is NULL OR 
-last_meeting DATEDIFF(CURRENT_DATE(), m.last_meeting) > 30);
+WHERE score < 80 ANd last_meeting is NULL or 
+last_meeting DATEDIFF(CURRENT_DATE(), last_meeting) > 30);
