@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""function that provides stats about Nginx"""
+"""function that returns a list of schools"""
 
 
-def schools_by_topic(logs, topic):
+def schools_by_topic(mongo_collection, topic):
     """Document find list """
     return mongo_collection.find({"topics": topic})
