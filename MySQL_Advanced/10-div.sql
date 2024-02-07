@@ -1,5 +1,6 @@
 -- Create a function that divides and returns the first
 -- by the second number or 0 if the second number is 0
+DELIMITER //
 CREATE FUNCTION SafeDiv(a INT, b INT)
 RETURNS FLOAT
 BEGIN
@@ -14,3 +15,4 @@ BEGIN
     
     RETURN result;
 END;
+//
