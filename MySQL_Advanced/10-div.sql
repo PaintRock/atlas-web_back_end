@@ -1,9 +1,9 @@
 -- Create a function that divides and returns the first
 -- by the second number or 0 if the second number is 0
 CREATE FUNCTION SafeDiv(a INT, b INT)
-RETURNS DECIMAL(10, 2)
+RETURNS FLOAT
 BEGIN
-    DECLARE result DECIMAL(10, 2);
+    DECLARE result FLOAT;
     
     -- Check if b is equal to 0
     IF b = 0 THEN
