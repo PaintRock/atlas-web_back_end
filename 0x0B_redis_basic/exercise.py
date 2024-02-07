@@ -29,13 +29,13 @@ def call_history(method: Callable) -> Callable:
         outputs_key = method.__qualname__ + ":outputs"
         
         # Storing input arguments
-        redis_server.rpush(inputs_key, str(args))
+        self.rpush(inputs_key, str(args))
         
         # Executing the function to retrieve the output
         output = method(*args, **kwargs)
         
         # Storing the output
-        redis_server.rpush(outputs_key, str(output))
+        self.rpush(outputs_key, str(output))
         
         return output
     
