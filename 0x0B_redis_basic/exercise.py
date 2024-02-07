@@ -29,13 +29,13 @@ def call_history(method: Callable) -> Callable:
         outputs_key = method.__qualname__ + ":outputs"
         
         # Storing input arguments
-        self.rpush(inputs_key, str(args))
+        self._redis.rpush(inputs_key, str(args))
         
         # Executing the function to retrieve the output
         output = method(*args, **kwargs)
         
         # Storing the output
-        self.rpush(outputs_key, str(output))
+        self._redis.rpush(outputs_key, str(output))
         
         return output
     
