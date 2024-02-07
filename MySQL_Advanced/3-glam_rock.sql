@@ -1,7 +1,3 @@
--- Glam rock as main style by longevity
-SELECT band_name, 
-    IFNULL(split, 2020) - formed AS lifespan
-FROM metal_bands
-WHERE style LIKE '%Glam rock%'
-ORDER BY lifespan DESC
-;
+version https://git-lfs.github.com/spec/v1
+oid sha256:b743db37418a46e2801ae69eab69eecaae5ab54d2296ef2deffbd6d2a7dd579b
+size 176

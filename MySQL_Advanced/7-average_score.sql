@@ -1,12 +1,3 @@
--- compute average schore
-
-DELIMITER //
-CREATE PROCEDURE ComputeAverageScoreForUser(
-    IN user_id INT)
-BEGIN
-    DECLARE avg_score FLOAT;
-    SET avg_score = (SELECT AVG(score) FROM corrections AS C WHERE C.user_id=user_id);
-    UPDATE users SET average_score = avg_score WHERE id=user_id;
-END
-//
-DELIMITER ;
+version https://git-lfs.github.com/spec/v1
+oid sha256:fa107d6d94b97c2d76086e781e1e60111fe122f59dfd7844a5b1b39d3b09d48a
+size 310

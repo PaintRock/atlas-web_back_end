@@ -1,16 +1,3 @@
--- some stuff about a bonus program
-DELIMITER //
-CREATE PROCEDURE AddBonus (
-    IN user_id int,
-    IN project_name varchar(255),
-    IN score float
-)
-BEGIN
-    INSERT INTO projects (name)
-    SELECT project_name FROM DUAL
-
-    WHERE NOT EXISTS (SELECT * FROM projects WHERE name = project_name);
-    INSERT INTO corrections (user_id, project_id, score)
-    VALUES (user_id, (SELECT id FROM projects WHERE name = project_name), score);
-END;
-//
+version https://git-lfs.github.com/spec/v1
+oid sha256:3abcdc0a3fbeccb5d6e1e2a39a784d635ce1ef44883ded678a962cd6b9b34b40
+size 444

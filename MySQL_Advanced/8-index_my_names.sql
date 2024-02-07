@@ -1,3 +1,3 @@
--- Task 8: Optimize simple search - creates an index idx_name_first
--- on the table names and the first letter of name
-CREATE INDEX idx_name_first ON names (LEFT (name, 1) );
+version https://git-lfs.github.com/spec/v1
+oid sha256:1d137693503b365c27d3d7081de4b6b46ba036c164c95cfbfcca3f3d065a7a11
+size 174
