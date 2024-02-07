@@ -19,6 +19,28 @@ def count_calls(method: Callable) -> Callable:
 
     return wrapper
 
+def call_history(nethod: Callable) -> Callable:
+    """Decorator to store i/o"""
+    
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
+        """Wrapper for call_history"""
+        inputs_key = method.__qualname__ + ":inputs"
+        outputs_key = method.__qualname__ + ":outputs"
+        
+        # Storing input arguments
+        redis_server.rpush(inputs_key, str(args))
+        
+        # Executing the function to retrieve the output
+        output = method(*args, **kwargs)
+        
+        # Storing the output
+        redis_server.rpush(outputs_key, str(output))
+        
+        return output
+    
+    return wrapper
+
 
 class Cache:
     """Create a class Cache"""
