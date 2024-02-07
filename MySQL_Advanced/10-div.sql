@@ -2,9 +2,9 @@
 -- by the second number or 0 if the second number is 0
 DELIMITER //
 CREATE FUNCTION SafeDiv(a INT, b INT)
-RETURNS FLOAT
+RETURNS DECIMAL(10, 2)
 BEGIN
-    DECLARE result FLOAT;
+    DECLARE result DECIMAL(10, 2);
     
     -- Check if b is equal to 0
     IF b = 0 THEN
