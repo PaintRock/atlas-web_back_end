@@ -2,7 +2,7 @@
 """Provides some stats about Nginx logs stored in MongoDB"""
 from pymongo import MongoClient
 from dump import logs
-import nginx
+
 
 def log_stats():
     """Provides some stats about Nginx logs stored in MongoDB"""
