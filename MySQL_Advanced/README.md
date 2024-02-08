@@ -1,0 +1,1 @@
+Do not do git for large files on 8.  try git ignore the file. 
