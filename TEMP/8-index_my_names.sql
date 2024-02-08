@@ -1,3 +1,2 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4b83513678d70ef237c1997dcefc00d8917d8980e4702992672bdef4bda13be8
-size 106
+-- on the table names and the first letter of name
+CREATE INDEX idx_name_first ON names (LEFT (name, 1));
