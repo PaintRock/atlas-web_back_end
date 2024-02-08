@@ -7,7 +7,7 @@ from dump import logs
 def log_stats():
     """Provides some stats about Nginx logs stored in MongoDB"""
     client = MongoClient()
-    db = client.logs
+    db = dump.logs
     logs = nginx.bson
     print("{} logs".format(logs.count_documents({})))
     print("Methods:")
