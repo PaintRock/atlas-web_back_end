@@ -2,12 +2,13 @@
 """Provides some stats about Nginx logs stored in MongoDB"""
 from pymongo import MongoClient
 from dump import logs
+import nginx
 
 def log_stats():
     """Provides some stats about Nginx logs stored in MongoDB"""
     client = MongoClient()
     db = client.logs
-    logs = db.nginx
+    logs = nginx.bson
     print("{} logs".format(logs.count_documents({})))
     print("Methods:")
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
