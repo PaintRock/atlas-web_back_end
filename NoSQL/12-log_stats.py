@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Provides some stats about Nginx logs stored in MongoDB"""
 from pymongo import MongoClient
+from dump import logs
 
 def log_stats():
     """Provides some stats about Nginx logs stored in MongoDB"""
