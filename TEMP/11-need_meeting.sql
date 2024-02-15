@@ -1,3 +1,10 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b9649af232fa296e99fc016e7388fc71d3e32783496c4e6ef36236ec672788f9
-size 321
+-- script that creates a view need_meeting that
+-- lists all students that have a score under 80 
+--(strict) and no last_meeting or more than 1 month.
+DELIMITER //
+CREATE VIEW need_meeting
+AS SELECT name FROM students
+WHERE score < 80 AND last_meeting is NULL
+OR last_meeting < DATE_SUB(NOW() - INTERVAL 1 MONTH);
+END;
+//
