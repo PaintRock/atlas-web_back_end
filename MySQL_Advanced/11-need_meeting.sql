@@ -5,6 +5,6 @@ SELECT name
 FROM students
 WHERE score < 80 
 OR last_meeting NOT NULL
-OR last_meeting (CURDATE() - 1 month));
+OR last_meeting (NOW() - 1 month));
 END;
 //
