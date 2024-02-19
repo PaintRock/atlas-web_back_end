@@ -1,6 +1,5 @@
 function displayMessage(message) {
-    console.log(message);
-  }
-  
- export default displayMessage;
-  
+  console.log(message);
+}
+
+export default displayMessage;
