@@ -1,7 +1,6 @@
 // Comment to test file 2
 
-function displayMessage(message) {
-  console.log(message);
-}
-
+const displayMessage = (str) => {
+  console.log(str);
+};
 module.exports = displayMessage;
